@@ -1,0 +1,96 @@
+<!-- src/app/components/book-create/book-create.component.html -->
+<div class="container">
+  <h1>➕ Add New Book</h1>
+
+  <!-- General Error -->
+  <div *ngIf="errors.general" class="error">
+    {{ errors.general[0] }}
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+
+    <!-- ID -->
+    <div class="form-group">
+      <label for="id">ID *</label>
+      <input
+        id="id"
+        type="text"
+        [(ngModel)]="book.id"
+        name="id"
+        required
+        placeholder="Book id">
+      <span class="field-error" *ngIf="errors.title">
+        {{ errors.title[0] }}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <div class="form-group">
+      <label for="title">Title *</label>
+      <input
+        id="title"
+        type="text"
+        [(ngModel)]="book.title"
+        name="title"
+        required
+        placeholder="Book title">
+      <span class="field-error" *ngIf="errors.title">
+        {{ errors.title[0] }}
+      </span>
+    </div>
+
+    <!-- Author -->
+    <div class="form-group">
+      <label for="author">Author *</label>
+      <input
+        id="author"
+        type="text"
+        [(ngModel)]="book.author"
+        name="author"
+        required
+        placeholder="Author name">
+      <span class="field-error" *ngIf="errors.author">
+        {{ errors.author[0] }}
+      </span>
+    </div>
+
+    <!-- Category -->
+    <div class="form-group">
+      <label for="category">Category *</label>
+      <input
+        id="category"
+        type="text"
+        [(ngModel)]="book.category"
+        name="category"
+        required
+        placeholder="e.g. IT Science, Fiction">
+      <span class="field-error" *ngIf="errors.category">
+        {{ errors.category[0] }}
+      </span>
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label for="price">Price *</label>
+      <input
+        id="price"
+        type="number"
+        [(ngModel)]="book.price"
+        name="price"
+        required
+        min="0"
+        step="0.01"
+        placeholder="0.00">
+      <span class="field-error" *ngIf="errors.price">
+        {{ errors.price[0] }}
+      </span>
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-save" [disabled]="submitting">
+      {{ submitting ? 'Saving...' : 'Create Book' }}
+    </button>
+    <a routerLink="/books" class="btn btn-cancel">Cancel</a>
+
+  </form>
+</div>
