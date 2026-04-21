@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
-import { BookComponent } from './components/book/book.component';
+import { BookCreationComponent } from './features/books/components/book-creation/book-creation';
+import { BookListComponent } from './features/books/components/book-list/book-list';
 
 export const routes: Routes = [
-  { path: 'books',       component: BookComponent },
-  { path: 'books/new',   component: BookComponent },
-  { path: 'books/:id',   component: BookComponent }];
+  { path: '',           redirectTo: '/books', pathMatch: 'full' },
+  { path: 'books',       component: BookListComponent },
+  { path: 'books/new',   component: BookCreationComponent },
+  { path: 'books/:id',   component: BookCreationComponent }];

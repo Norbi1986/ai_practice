@@ -1,11 +1,13 @@
-<!-- src/app/components/book-create/book-create.component.html -->
+<!-- src/app/components/book-creation-create/book-creation-create.component.html -->
 <div class="container">
   <h1>➕ Add New Book</h1>
 
   <!-- General Error -->
-  <div *ngIf="errors.general" class="error">
-    {{ errors.general[0] }}
-  </div>
+  @if (errors.general) {
+    <div class="error">
+      {{ errors.general[0] }}
+    </div>
+  }
 
   <form (ngSubmit)="onSubmit()">
 
@@ -19,9 +21,9 @@
         name="id"
         required
         placeholder="Book id">
-      <span class="field-error" *ngIf="errors.title">
-        {{ errors.title[0] }}
-      </span>
+      @if (errors.title) {
+        <span class="field-error">{{ errors.title[0] }}</span>
+      }
     </div>
 
     <!-- Title -->
@@ -34,9 +36,9 @@
         name="title"
         required
         placeholder="Book title">
-      <span class="field-error" *ngIf="errors.title">
-        {{ errors.title[0] }}
-      </span>
+      @if (errors.title) {
+        <span class="field-error">{{ errors.title[0] }}</span>
+      }
     </div>
 
     <!-- Author -->
@@ -49,9 +51,9 @@
         name="author"
         required
         placeholder="Author name">
-      <span class="field-error" *ngIf="errors.author">
-        {{ errors.author[0] }}
-      </span>
+      @if (errors.author) {
+        <span class="field-error">{{ errors.author[0] }}</span>
+      }
     </div>
 
     <!-- Category -->
@@ -64,9 +66,9 @@
         name="category"
         required
         placeholder="e.g. IT Science, Fiction">
-      <span class="field-error" *ngIf="errors.category">
-        {{ errors.category[0] }}
-      </span>
+      @if (errors.category) {
+        <span class="field-error">{{ errors.category[0] }}</span>
+      }
     </div>
 
     <!-- Price -->
@@ -81,9 +83,9 @@
         min="0"
         step="0.01"
         placeholder="0.00">
-      <span class="field-error" *ngIf="errors.price">
-        {{ errors.price[0] }}
-      </span>
+      @if (errors.price) {
+        <span class="field-error">{{ errors.price[0] }}</span>
+      }
     </div>
 
     <!-- Buttons -->
@@ -93,27 +95,4 @@
     <a routerLink="/books" class="btn btn-cancel">Cancel</a>
 
   </form>
-
-  <div class="listOfTheBooks">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Category</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let book of allBooks">
-            <td>{{ book.id }}</td>
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
-            <td>{{ book.category }}</td>
-            <td>{{ book.price }}</td>
-          </tr>
-        </tbody>
-    </table>
-  </div>
 </div>

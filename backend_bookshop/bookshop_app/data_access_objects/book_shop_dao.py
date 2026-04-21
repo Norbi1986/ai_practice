@@ -18,7 +18,7 @@ class BookShopDao:
 
     @staticmethod
     def create(book: Book):
-        """Creates book in database"""
+        """Creates book-creation in database"""
         db.session.add(book)
         db.session.commit()
 

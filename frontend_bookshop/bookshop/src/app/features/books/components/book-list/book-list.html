@@ -1,0 +1,32 @@
+<!-- src/app/components/book-creation-create/book-creation-create.component.html -->
+<div class="container">
+<p>Books count: {{ allBooks.length }}</p>
+    <div class="listOfTheBooks">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+       <tbody>
+          @for (book of allBooks; track book.id) {
+              <tr>
+                  <td>{{ book.id }}</td>
+                  <td>{{ book.title }}</td>
+                  <td>{{ book.author }}</td>
+                  <td>{{ book.category }}</td>
+                  <td>{{ book.price }}</td>
+              </tr>
+          } @empty {
+              <tr>
+                  <td colspan="5">No books found</td>
+              </tr>
+          }
+      </tbody>
+    </table>
+  </div>
+</div>
