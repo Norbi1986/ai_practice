@@ -11,6 +11,10 @@ export class BookService {
   private http = inject(HttpClient);
   private baseUrl = `http://localhost:5000/api/books`;
 
+  getAll(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.baseUrl}`);
+  }
+
   getById(id: number): Observable<Book> {
     return this.http.get<Book>(`${this.baseUrl}/${id}`);
   }

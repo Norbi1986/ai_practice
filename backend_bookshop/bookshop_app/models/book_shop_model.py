@@ -23,8 +23,6 @@ class Book(db.Model):
     price = db.Column(db.Float, nullable=False)
 
 
-    def __repr__(self) -> str:
-        """Displays User model entity in a human-readable format."""
-        return f"<User {self.login}>"
+
 
 

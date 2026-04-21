@@ -6,6 +6,12 @@ from services.book_shop_service import BookShopService
 
 book_bp = Blueprint('books', __name__)
 
+
+@book_bp.route('', methods=['GET'])
+def get_all():
+    """Get user resource."""
+    return BookShopService.get_all()
+
 @book_bp.route('/<int:book_id>', methods=['GET'])
 def get(book_id: int):
     """Get user resource."""

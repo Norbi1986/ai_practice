@@ -16,10 +16,12 @@ export class BookComponent {
   private router = inject(Router);
 
   ngOnInit() {
+    this.loadAllBooks();
 	}
 
   errors: any = {};
   submitting = false;
+  allBooks: Book[] = [];
   book: Book = {
     id: -1,
     title: '',
@@ -27,6 +29,26 @@ export class BookComponent {
     category: '',
     price: 0.0,
   };
+
+  loadAllBooks() {
+    this.bookService.getAll().subscribe({
+      next: (books) => {
+        console.log(books);
+        this.allBooks = books;
+        this.router.navigate(['/books']);
+      },
+      error: (err) => {
+        this.submitting = false;
+
+        // Marshmallow validation errors
+        if (err.error?.errors) {
+          this.errors = err.error.errors;
+        } else {
+          this.errors = { general: ['Failed to create book'] };
+        }
+      }
+      });
+  }
 
   onSubmit(): void {
     this.submitting = true;

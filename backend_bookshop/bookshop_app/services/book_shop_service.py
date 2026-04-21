@@ -5,15 +5,22 @@ from models.book_shop_schema import BookShopSchema
 from flask import request, jsonify, session
 
 bookshop_shema = BookShopSchema()
+bookshop_schemas = BookShopSchema(many=True)
 
 class BookShopService:
     """To support CRUD operations for user resource"""
 
+    @staticmethod
+    def get_all():
+        """Get user resource"""
+        user_data = BookShopDao.fetch_all()
+        return bookshop_schemas.dump(user_data)
 
     @staticmethod
     def get(book_id: int):
         """Get user resource"""
         user_data = BookShopDao.fetch_by_id(book_id)
+        print(user_data)
         return bookshop_shema.dump(user_data)
 
     @staticmethod
